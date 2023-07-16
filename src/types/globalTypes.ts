@@ -30,6 +30,16 @@ export interface IReview  {
   user: IUser
 }
 
+export interface IWishList  {
+  book: IBooks
+  user: IUser
+}
+
+export interface IReadList  {
+  book: IBooks
+  user: IUser
+}
+
 
 export interface ILoginResponse {
   user: IUser
