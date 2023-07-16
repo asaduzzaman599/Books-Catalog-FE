@@ -7,7 +7,7 @@ interface Props {
 const Book = (props: Props) => {
     const { book } = props
     return (
-        <div className='p-10 rounded shadow-lg'>
+        <div className='p-10 rounded shadow-lg grid gap-6'>
             <div>
             <h3 className='text-lg font-bold'> {book.title}</h3>
             <h3 className='text-sm font-medium'>Genre: {book.genre}</h3>

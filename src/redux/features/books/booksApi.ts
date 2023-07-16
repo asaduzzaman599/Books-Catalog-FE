@@ -25,19 +25,19 @@ const bookApi = api.injectEndpoints({
     }),
     create: builder.mutation({
       query: ({  data, token }: { data: Partial<IBook>,  token: string  }) => ({
-        url: `/books}`,
+        url: `/books/create-book`,
         method: "POST",
         headers: { authorization: token },
         body: data
       }),
       invalidatesTags: ["books"],
     }),
-    getBook: builder.query({
-      query: ({ id}: { id: string, data: Partial<IBook> }) => ({
+    getBook: builder.query<IResponse<IBook>,string>({
+      query: (id: string) => ({
         url: `/books/${id}`,
       }),
     }),
   }),
 });
 
-export const { useGetBooksQuery, useDeleteMutation, useUpdateMutation, useGetBookQuery } = bookApi;
+export const { useGetBooksQuery, useDeleteMutation, useUpdateMutation, useGetBookQuery, useCreateMutation } = bookApi;

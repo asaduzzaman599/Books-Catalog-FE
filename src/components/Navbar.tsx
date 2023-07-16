@@ -1,14 +1,26 @@
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks'
 import { NavLink } from 'react-router-dom'
+import { Button } from './ui/button'
+import { removeUser } from '@/redux/features/user/userSlice'
 
 const Navbar = () => {
 
+    const user = useAppSelector(state => state.user.user)
+    const dispatch = useAppDispatch()
+    
+
+    const signOut = () =>{
+        localStorage.removeItem('tokenId')
+        dispatch(removeUser())
+    }
+
     return (
-        <div className='container mx-auto flex justify-between bg-gray-600 py-6'>
+        <div className='container mx-auto flex justify-between bg-gray-600 py-6  items-center'>
             <div className='text-xl font-bold text-white'>
                 Books Catalog House
             </div>
             <div>
-                <ul className='flex gap-4'>
+                <ul className='flex gap-4  items-center'>
                     <li className='text-white font-medium'>
                         <NavLink to=''
                          className={({ isActive }) =>
@@ -31,14 +43,25 @@ const Navbar = () => {
                 </ul>
             </div>
             <div>
-            <ul className='flex gap-4'>
-            <li className='text-white font-medium'>
-            <NavLink to='login'>Login</NavLink>
-            </li>
-            <li className='text-white font-medium'>
-            <NavLink to='signup'>Sign Up</NavLink>
-            </li>
-            </ul>
+                {
+                    !user ? <ul className='flex gap-4 items-center'>
+                    <li className='text-white font-medium'>
+                    <NavLink to='login'>Login</NavLink>
+                    </li>
+                    <li className='text-white font-medium'>
+                    <NavLink to='signup'>Sign Up</NavLink>
+                    </li>
+                    </ul> :
+                    <ul className='flex gap-4  items-center'>
+                    <li className='text-white font-medium'>
+                    <NavLink to='/add-book'>Add Books</NavLink>
+                    </li>
+                    <li className='text-white font-medium'>
+                    <Button onClick={signOut}>Logout</Button>
+                    </li>
+                    </ul>
+                }
+            
           
             </div>
         </div>

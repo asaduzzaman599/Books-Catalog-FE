@@ -4,8 +4,8 @@ import { ILoginInput, ILoginResponse, IResponse, ISignupInput, IUser } from "@/t
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<IResponse<ILoginResponse>, { data: ILoginInput}>({
-      query: ({  data }: { data: ILoginInput}) => ({
+    login: builder.mutation<IResponse<ILoginResponse>, { data?: ILoginInput}>({
+      query: ({  data }: { data?: ILoginInput}) => ({
         url: `/auth/login`,
         method: 'POST',
         body: data,
@@ -18,8 +18,8 @@ const authApi = api.injectEndpoints({
         body: data,
       }),
     }),
-    getLoggedInUser: builder.query({
-      query: (token:string) => ({
+    getLoggedInUser: builder.query<IResponse<IUser>,string>({
+      query: (token?:string) => ({
         url: `/users`,
         headers: { authorization: token },
       }),

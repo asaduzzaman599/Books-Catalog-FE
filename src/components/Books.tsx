@@ -20,7 +20,7 @@ const Books = () => {
     }
     return (
         <div className='container mx-auto'>
-            <div className='mt-10 grid grid-cols-3'>
+            <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2'>
                 {
                     data?.result?.map((book: IBook) => <Book book={book}>
                         <div className='flex justify-start'>
