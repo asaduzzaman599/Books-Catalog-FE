@@ -1,14 +1,15 @@
-
-import { useGetBooksQuery } from '@/redux/features/books/booksApi'
-import { IBook } from '@/types/globalTypes'
-import Book from './Book'
-import { Button } from './ui/button'
+import Book from '@/components/Book'
+import Loading from '@/components/Loading'
+import { Button } from '@/components/ui/button'
+import { useGetWishListQuery } from '@/redux/features/wishlist.ts/wishlist'
+import { useAppSelector } from '@/redux/hooks/hooks'
+import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import Loading from './Loading'
 
+const WishList = () => {
+    const user = useAppSelector(state=>state.user)
+    const {data, isLoading} = useGetWishListQuery(user.token)
 
-const Books = () => {
-    const { data, error, isLoading } = useGetBooksQuery({})
     const navigate = useNavigate()
 
     if(isLoading)
@@ -21,7 +22,7 @@ const Books = () => {
         <div className='container mx-auto'>
             <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2'>
                 {
-                    data?.result?.map((book: IBook) => <Book book={book}>
+                    data?.result?.map(({book}) => <Book book={book}>
                         <div className='flex justify-start'>
                             <Button onClick={()=>details(book._id)}>Details</Button>
                         </div>
@@ -32,4 +33,5 @@ const Books = () => {
     );
 };
 
-export default Books;
+
+export default WishList;

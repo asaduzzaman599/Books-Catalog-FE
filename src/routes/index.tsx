@@ -1,12 +1,12 @@
 import App from "@/App"
 import Books from "@/components/Books"
-import ReadList from "@/components/ReadList"
-import WishList from "@/components/WishList"
 import AddBook from "@/pages/Book/AddBook"
 import DetailsBook from "@/pages/Book/DetailsBook"
 import UpdateBook from "@/pages/Book/UpdateBook"
 import Login from "@/pages/Login"
+import ReadList from "@/pages/ReadList"
 import Signup from "@/pages/Signup"
+import WishList from "@/pages/WishList"
 import {
     createBrowserRouter,
 } from "react-router-dom"

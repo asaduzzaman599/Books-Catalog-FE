@@ -8,6 +8,7 @@ import { FaReadme,FaClipboardList } from "react-icons/fa";
 import { useAppSelector } from '@/redux/hooks/hooks'
 import { useAddReadListMutation, useGetReadListQuery } from '@/redux/features/readlist/readlistApi'
 import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wishlist.ts/wishlist'
+import { IBook } from '@/types/globalTypes'
 
   const DetailsBook = () => {
     const {id} = useParams()
@@ -16,13 +17,13 @@ import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wi
     const user = useAppSelector(state=>state.user)
     const {data, isLoading,} = useGetBookQuery(id as string)
     const [deleteBook, deleteResult] = useDeleteMutation()
-    const [addReadList, readListResult] = useAddReadListMutation()
+    const [addReadList] = useAddReadListMutation()
     const readList = useGetReadListQuery(user.token)
-    const [addWishList, wishlistResult] = useAddWishListMutation()
+    const [addWishList] = useAddWishListMutation()
     const wishList = useGetWishListQuery(user.token)
 
 
-    if(isLoading || deleteResult.isLoading || wishList.isLoading || readList.isLoading)
+    if(isLoading || deleteResult.isLoading || wishList.isLoading || readList.isLoading )
     {
         return <Loading />
     }
@@ -36,6 +37,18 @@ import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wi
     const onUpdate = () => {
         navigate(`/update-book/${id!}`)
     }
+
+    const wishListed = !!wishList?.data?.result?.find((wish) => wish?.book?._id === id)
+    const readListed = !!readList?.data?.result?.find((read) => read?.book?._id === id)
+    console.log(readListed)
+
+    const addToReadList = async () =>{
+        await addReadList({id:id!, token: user.token})
+    }
+    const addToWishList = async () =>{
+        await addWishList({id:id!, token: user.token})
+    }
+
       return (
         <div className="max-w-lg mx-auto bg-white p-8 shadow-md mt-10">
         <div className='flex justify-between'>
@@ -59,11 +72,11 @@ import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wi
             </div>
             </div>
             <div>
-              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm">
-                <FaReadme className={`text-gray-400 h-4 w-4`}/> Add To Read List
+              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToWishList}>
+                <FaClipboardList className={`${wishListed ? 'text-blue-300':'text-gray-400'} h-4 w-4`}/> Add To Wish List
               </button>
-              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm">
-               <FaClipboardList className={`text-gray-400 h-4 w-4`}/>  Add To Read List
+              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToReadList}>
+               <FaReadme className={`${readListed ? 'text-blue-300':'text-gray-400'} h-4 w-4`}/>  Add To Read List
               </button>  
             </div>
         </div>
