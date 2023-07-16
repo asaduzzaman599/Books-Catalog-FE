@@ -22,7 +22,7 @@ const WishList = () => {
         <div className='container mx-auto'>
             <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2'>
                 {
-                    data?.result?.map(({book}) => <Book book={book}>
+                    data?.result?.map(({book}) => <Book book={book} key={book._id}>
                         <div className='flex justify-start'>
                             <Button onClick={()=>details(book._id)}>Details</Button>
                         </div>
