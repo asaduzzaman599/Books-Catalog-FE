@@ -1,5 +1,5 @@
+import App from "@/App"
 import Books from "@/components/Books"
-import Home from "@/pages/Home"
 import Login from "@/pages/Login"
 import Signup from "@/pages/Signup"
 import {
@@ -9,7 +9,7 @@ import {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <App />,
       children: [{
       path: "/",
       element: <Books />,
