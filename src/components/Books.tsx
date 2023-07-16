@@ -1,5 +1,5 @@
 
-import { useGetBooksQuery } from '@/redux/apiSlice.ts/apiSlice'
+import { useGetBooksQuery } from '@/redux/features/books/booksApi'
 import React from 'react';
 
 const Books = () => {

@@ -1,5 +1,12 @@
 
 
+
+export interface IResponse<T> {
+  success?: boolean
+  message?: string
+  result?: T
+}
+
 export interface IUser  {
   name: {
     firstName: string
@@ -16,11 +23,6 @@ export interface IBooks  {
   createdBy: IUser
 }
 
-export interface IResponse<T> {
-status?: boolean
-message?: string
-result?: T
-}
 
 export interface ILoginResponse {
   user: IUser
