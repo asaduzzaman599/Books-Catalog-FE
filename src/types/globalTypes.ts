@@ -23,6 +23,13 @@ export interface IBooks  {
   createdBy: IUser
 }
 
+export interface IReview  {
+  _id:string
+  comment: string
+  rating: number
+  user: IUser
+}
+
 
 export interface ILoginResponse {
   user: IUser
