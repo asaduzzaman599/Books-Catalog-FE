@@ -1,8 +1,7 @@
 import { api } from "@/redux/apiSlice.ts/apiSlice";
 import { IResponse, IWishList } from "@/types/globalTypes";
-import { url } from "inspector"
 
-const reviewApi = api.injectEndpoints({
+const wishlistApi = api.injectEndpoints({
   endpoints: (builder) => ({
     addWishList: builder.mutation({
       query: ({ id, token }: { id: string; token: string }) => ({
@@ -23,4 +22,4 @@ const reviewApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetWishListQuery, useAddWishListMutation } = reviewApi;
+export const { useGetWishListQuery, useAddWishListMutation } = wishlistApi;
