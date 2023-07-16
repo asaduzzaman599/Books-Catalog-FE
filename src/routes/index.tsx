@@ -1,5 +1,7 @@
 import App from "@/App"
 import Books from "@/components/Books"
+import ReadList from "@/components/ReadList"
+import WishList from "@/components/WishList"
 import Login from "@/pages/Login"
 import Signup from "@/pages/Signup"
 import {
@@ -13,7 +15,15 @@ import {
       children: [{
       path: "/",
       element: <Books />,
-      }]
+      },
+      {
+        path: "/wish-list",
+        element: <WishList />,
+        },
+        {
+            path: "/read-list",
+            element: <ReadList />,
+            }]
     },
     {
         path: "/login",

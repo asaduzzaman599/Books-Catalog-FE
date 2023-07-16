@@ -17,15 +17,15 @@ const Navbar = () => {
                     </li>
                     <li className='text-white font-medium'>
                         <NavLink to='read-list'
-                         className={({ isActive, isPending }) =>
-                         isPending ? "pending" : isActive ? "active" : ""
+                         className={({ isActive }) =>
+                         isActive ? "text-blue-400 underline" : ""
                        }>Read List</NavLink>
                         
                     </li>
                     <li className='text-white font-medium'>
                     <NavLink to='wish-list'
                      className={({ isActive }) =>
-                     isActive ? "text-gray-50" : ""
+                     isActive ? "text-blue-400 underline" : ""
                    }> Wish List</NavLink>
                     </li>
                 </ul>
