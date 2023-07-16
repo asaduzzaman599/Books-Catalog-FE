@@ -1,6 +1,6 @@
 
 import { useGetBooksQuery } from '@/redux/features/books/booksApi'
-import React from 'react';
+
 
 const Books = () => {
     const { data, error, isLoading } = useGetBooksQuery({})

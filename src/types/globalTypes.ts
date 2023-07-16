@@ -15,7 +15,7 @@ export interface IUser  {
   _id: string
 }
 
-export interface IBooks  {
+export interface IBook  {
   _id:string
   genre: string
   author: string
@@ -31,12 +31,12 @@ export interface IReview  {
 }
 
 export interface IWishList  {
-  book: IBooks
+  book: IBook
   user: IUser
 }
 
 export interface IReadList  {
-  book: IBooks
+  book: IBook
   user: IUser
 }
 
