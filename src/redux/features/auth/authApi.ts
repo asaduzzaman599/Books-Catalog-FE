@@ -1,17 +1,17 @@
 import { api } from "@/redux/apiSlice.ts/apiSlice"
-import { ILoginInput, IResponse, ISignupInput } from "@/types/globalTypes"
+import { ILoginInput, ILoginResponse, IResponse, ISignupInput, IUser } from "@/types/globalTypes"
 
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<IResponse<ILoginResponse>, { data: ILoginInput}>({
       query: ({  data }: { data: ILoginInput}) => ({
         url: `/auth/login`,
         method: 'POST',
         body: data,
       }),
     }),
-    signup: builder.mutation({
+    signup: builder.mutation<IResponse<IUser>, { data: ISignupInput}>({
       query: ({  data }: { data: ISignupInput}) => ({
         url: `/auth/signup`,
         method: 'POST',

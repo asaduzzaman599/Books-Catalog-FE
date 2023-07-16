@@ -1,15 +1,35 @@
 
 import { useGetBooksQuery } from '@/redux/features/books/booksApi'
+import { IBook } from '@/types/globalTypes'
+import Book from './Book'
+import { Button } from './ui/button'
+import { useNavigate } from 'react-router-dom'
 
 
 const Books = () => {
     const { data, error, isLoading } = useGetBooksQuery({})
+    const navigate = useNavigate()
 
-    console.log(data)
+    if(isLoading)
+    return <div>
+        Loading...
+    </div>
+
+    const details = (id: string) =>{
+        navigate(`/books/${id}`)
+    }
     return (
-        <h1>
-            Books
-        </h1>
+        <div className='container mx-auto'>
+            <div className='mt-10 grid grid-cols-3'>
+                {
+                    data?.result?.map((book: IBook) => <Book book={book}>
+                        <div className='flex justify-start'>
+                            <Button onClick={()=>details(book._id)}>Details</Button>
+                        </div>
+                    </Book>)
+                }
+            </div>
+        </div>
     );
 };
 

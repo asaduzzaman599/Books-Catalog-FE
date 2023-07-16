@@ -17,6 +17,7 @@ export interface IUser  {
 
 export interface IBook  {
   _id:string
+  title: string
   genre: string
   author: string
   PublicationDate: string
