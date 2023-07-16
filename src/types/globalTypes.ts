@@ -41,6 +41,21 @@ export interface IReadList  {
 }
 
 
+export interface ILoginInput {
+  email: string
+  password: string
+}
+
+export interface ISignupInput {
+  name: {
+    firstName: string
+    lastName: string
+  }
+  phone: string
+  email: string
+  password: string
+}
+
 export interface ILoginResponse {
   user: IUser
   accessToken: string
