@@ -53,7 +53,7 @@ const UpdateBook = () => {
         setValue('title', data?.result?.title ?? '')
         setValue('author', data?.result?.author ?? '')
         setValue('genre', data?.result?.genre ?? '')
-        data?.result?.PublicationDate? setDate(new Date( data.result?.PublicationDate)) : setDate(date) 
+        data?.result?.publicationDate? setDate(new Date( data.result?.publicationDate)) : setDate(date) 
     }, [isSuccess])
     
 

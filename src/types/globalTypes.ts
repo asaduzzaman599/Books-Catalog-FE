@@ -20,7 +20,7 @@ export interface IBook  {
   title: string
   genre: string
   author: string
-  PublicationDate: Date
+  publicationDate: Date
   createdBy: IUser
 }
 
