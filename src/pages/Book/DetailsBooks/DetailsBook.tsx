@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 
   import Loading from '@/components/Loading'
 import { Button } from '@/components/ui/button'
@@ -9,6 +10,7 @@ import { useAppSelector } from '@/redux/hooks/hooks'
 import { useAddReadListMutation, useGetReadListQuery } from '@/redux/features/readlist/readlistApi'
 import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wishlist.ts/wishlist'
 import { IBook } from '@/types/globalTypes'
+import Reviews from './Reviews'
 
   const DetailsBook = () => {
     const {id} = useParams()
@@ -32,7 +34,7 @@ import { IBook } from '@/types/globalTypes'
     }
       
     const onDeleteBook = async () => {
-        await deleteBook({id: id!, token: user.token})
+        await deleteBook({id: id!})
     }
     const onUpdate = () => {
         navigate(`/update-book/${id!}`)
@@ -43,14 +45,16 @@ import { IBook } from '@/types/globalTypes'
     console.log(readListed)
 
     const addToReadList = async () =>{
-        await addReadList({id:id!, token: user.token})
+        await addReadList({id:id!,})
     }
     const addToWishList = async () =>{
-        await addWishList({id:id!, token: user.token})
+        await addWishList({id:id!})
     }
 
       return (
-        <div className="max-w-lg mx-auto bg-white p-8 shadow-md mt-10">
+        <div className='container lg:flex mt-4 gap-4 justify-center mt-4'>
+          <div className='flex justify-center w-full'>
+          <div className="max-w-xl mx-auto bg-white p-8 shadow-md flex-1 bg-green-300">
         <div className='flex justify-between'>
         <div>
             <h1 className="text-2xl font-bold mb-4">Book Details</h1>
@@ -98,7 +102,12 @@ import { IBook } from '@/types/globalTypes'
         </div>
         </> 
         }
-      </div>
+          </div>
+          </div>
+          <div className=' lg:w-4/12 mx-auto'>
+            <Reviews id={id} />
+          </div>
+        </div>
       
       );
   };

@@ -5,10 +5,9 @@ import { IResponse, IReview } from "@/types/globalTypes"
 const reviewApi = api.injectEndpoints({
   endpoints: (builder) => ({
     postComment: builder.mutation({
-      query: ({ id, data, token }: {id: string, data: Partial<IReview>, token: string}) => ({
-        url: `/reviews/${id}`,
+      query: ({ data }: {id: string, data: Partial<IReview>}) => ({
+        url: `/reviews`,
         method: 'POST',
-        headers: { authorization: token },
         body: data,
       }),
       invalidatesTags: ['comments'],
@@ -21,5 +20,6 @@ const reviewApi = api.injectEndpoints({
 });
 
 export const {
- useGetReviewsQuery
+ useGetReviewsQuery,
+ usePostCommentMutation
 } = reviewApi;

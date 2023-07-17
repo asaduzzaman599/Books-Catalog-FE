@@ -29,6 +29,7 @@ export interface IReview  {
   comment: string
   rating: number
   user: IUser
+  createdAt: Date
 }
 
 export interface IWishList  {

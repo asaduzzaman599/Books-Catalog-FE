@@ -8,26 +8,23 @@ const bookApi = api.injectEndpoints({
       providesTags: ["books"],
     }),
     delete: builder.mutation({
-      query: ({ id, token }: { id: string, token: string }) => ({
+      query: ({ id }: { id: string,}) => ({
         url: `/books/${id}`,
         method: "DELETE",
-        headers: { authorization: token },
       }),
       invalidatesTags: ["books"],
     }),
     update: builder.mutation({
-      query: ({ id, data, token }: { id: string, data: Partial<IBook> , token: string }) => ({
+      query: ({ id, data }: { id: string, data: Partial<IBook>  }) => ({
         url: `/books/${id}`,
         method: "PATCH",
-        headers: { authorization: token },
         body: data
       }),
     }),
     create: builder.mutation({
-      query: ({  data, token }: { data: Partial<IBook>,  token: string  }) => ({
+      query: ({  data }: { data: Partial<IBook>}) => ({
         url: `/books/create-book`,
         method: "POST",
-        headers: { authorization: token },
         body: data
       }),
       invalidatesTags: ["books"],
