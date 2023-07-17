@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import Loading from "@/components/Loading"
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -77,7 +78,7 @@ const UpdateBook = () => {
             genre: data.genre,
             publicationDate: date
         }
-        updateBook({id: id as string, data: inputData, token: user.token}).catch(err => console.log(err))
+        updateBook({id: id as string, data: inputData}).catch(err => console.log(err))
       };
     return (
         <div className='h-screen w-full flex items-center justify-center'>

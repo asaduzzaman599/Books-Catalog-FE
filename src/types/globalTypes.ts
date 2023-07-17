@@ -62,3 +62,10 @@ export interface ILoginResponse {
   user: IUser
   accessToken: string
 }
+
+export interface IBookQueryType  {
+  limit?: number
+  search?: string
+  year?: string
+  genre?: string
+}

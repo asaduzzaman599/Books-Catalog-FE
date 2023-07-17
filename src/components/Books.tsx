@@ -5,10 +5,13 @@ import Book from './Book'
 import { Button } from './ui/button'
 import { useNavigate } from 'react-router-dom'
 import Loading from './Loading'
+import Filters from './Filters'
+import { useAppSelector } from '@/redux/hooks/hooks'
 
 
 const Books = () => {
-    const { data, error, isLoading } = useGetBooksQuery({})
+    const {search} = useAppSelector(state => state.filters)
+    const { data, error, isLoading } = useGetBooksQuery({search:search})
     const navigate = useNavigate()
 
     if(isLoading)
@@ -17,8 +20,10 @@ const Books = () => {
     const details = (id: string) =>{
         navigate(`/books/${id}`)
     }
+    console.log(search)
     return (
         <div className='container mx-auto'>
+            <Filters />
             <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2'>
                 {
                     data?.result?.map((book: IBook) => <Book book={book}>

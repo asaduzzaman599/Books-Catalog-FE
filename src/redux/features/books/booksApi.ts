@@ -1,10 +1,34 @@
 import { api } from "@/redux/apiSlice.ts/apiSlice";
-import { IBook, IResponse } from "@/types/globalTypes";
+import { IBook, IBookQueryType, IResponse } from "@/types/globalTypes";
+import { url } from "inspector"
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getBooks: builder.query<IResponse<IBook[]>, string>({
-      query: (query) => `books/`,
+    getBooks: builder.query<IResponse<IBook[]>, IBookQueryType>({
+      query: (query: IBookQueryType) => {
+        let url = `books`
+
+        const queryArr = []
+        
+        for(const key in query){
+          if(query[key as keyof IBookQueryType]){
+            const tempQuery = query[key  as keyof IBookQueryType]
+            if(tempQuery)
+            queryArr.push(`${key}=${tempQuery}`)
+          }
+        }
+        console.log('queryfor',queryArr)
+        
+     
+        if(queryArr.length){
+          url = `${url}?${queryArr.join('&')}`
+        }
+        console.log('url',url)
+        
+        return {
+          url: url
+        }
+      },
       providesTags: ["books"],
     }),
     delete: builder.mutation({

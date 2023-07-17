@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Button } from './ui/button'
 import { removeUser } from '@/redux/features/user/userSlice'
 
@@ -15,14 +15,15 @@ const Navbar = () => {
     }
 
     return (
-        <div className='container mx-auto flex justify-between bg-gray-600 py-6  items-center'>
+        <div className='bg-gray-600 py-6  '>
+        <div className='container mx-auto flex justify-between items-center'>
             <div className='text-xl font-bold text-white'>
-                Books Catalog House
+              <Link to='/'> Books Catalog House</Link>
             </div>
             <div>
                 <ul className='flex gap-4  items-center'>
                     <li className='text-white font-medium'>
-                        <NavLink to=''
+                        <NavLink to='/books'
                          className={({ isActive }) =>
                          isActive ? "text-blue-400 underline" : ""
                        }>All</NavLink>
@@ -54,7 +55,7 @@ const Navbar = () => {
                     </ul> :
                     <ul className='flex gap-4  items-center'>
                     <li className='text-white font-medium'>
-                    <NavLink to='/add-book'>Add Books</NavLink>
+                    <NavLink to='/add-new-book'>Add Books</NavLink>
                     </li>
                     <li className='text-white font-medium'>
                     <Button onClick={signOut}>Logout</Button>
@@ -64,6 +65,7 @@ const Navbar = () => {
             
           
             </div>
+        </div>
         </div>
     );
 };

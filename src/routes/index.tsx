@@ -1,5 +1,6 @@
 import App from "@/App"
 import Books from "@/components/Books"
+import RecentBooks from "@/components/RecentBooks"
 import AddBook from "@/pages/Book/AddBook"
 import DetailsBook from "@/pages/Book/DetailsBooks/DetailsBook"
 import UpdateBook from "@/pages/Book/UpdateBook"
@@ -17,7 +18,7 @@ import {
       element: <App />,
       children: [{
       path: "/",
-      element: <Books />,
+      element: <RecentBooks />,
       },
       {
         path: "/books",
@@ -28,7 +29,7 @@ import {
         element: <DetailsBook />,
         },
         {
-          path: "/add-book",
+          path: "/add-new-book",
         element: <AddBook />,
         },
         {
