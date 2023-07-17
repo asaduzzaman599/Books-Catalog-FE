@@ -18,12 +18,19 @@ export const booksFilterSlice = createSlice({
   initialState,
   reducers: {
     filterBySearch: (state, action: PayloadAction<string>) => {
+     
       state.search= action.payload
     },
     filterByGenre: (state, action: PayloadAction<string>) => {
+      if(action.payload === "All")
+      state.genre= ''
+      else
       state.genre= action.payload
     },
     filterByPublicationYear: (state, action: PayloadAction<string>) => {
+      if(action.payload === "All")
+      state.publicationYear= ''
+      else
       state.publicationYear= action.payload
     },
   },

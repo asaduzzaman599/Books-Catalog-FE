@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useSignupMutation } from '@/redux/features/auth/authApi'
 import { ISignupInput } from '@/types/globalTypes'
 import { useForm } from 'react-hook-form'
@@ -34,7 +35,6 @@ const Signup = () => {
     }
       
     const onSubmit =  (data: ISignupInput) => {
-        console.log(data);
         signup({data}).catch(err => console.log(err))
       };
     return (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Calendar } from "@/components/ui/calendar"
 import {
     Popover,
@@ -65,7 +66,8 @@ const AddBook = () => {
             genre: data.genre,
             publicationDate: date
         }
-         addBook({data: inputData, token: user.token}).catch(err => console.log(err))
+        
+         addBook({data: inputData,}).catch(err => console.log(err))
       };
     return (
         <div className='h-screen w-full flex items-center justify-center'>
@@ -84,19 +86,11 @@ const AddBook = () => {
               placeholder="Author Name"
               {...register('author', { required: 'Author Name is required' })}
             />
-            <Select onValueChange={(val:string)=>setValue('genre', val)} >
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a Genre" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                    <SelectLabel>Genre</SelectLabel>
-                    <SelectItem value="Fiction">Fiction</SelectItem>
-                    <SelectItem value="Novel">Novel</SelectItem>
-                    <SelectItem value="Narrative">Narrative</SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
+            <Input
+              id="author"
+              placeholder="Genre"
+              {...register('genre', { required: 'Genre is required' })}
+            />
             <div>
             <Popover>
       <PopoverTrigger asChild>

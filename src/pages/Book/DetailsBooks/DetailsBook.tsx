@@ -42,7 +42,7 @@ import Reviews from './Reviews'
 
     const wishListed = !!wishList?.data?.result?.find((wish) => wish?.book?._id === id)
     const readListed = !!readList?.data?.result?.find((read) => read?.book?._id === id)
-    console.log(readListed)
+  
 
     const addToReadList = async () =>{
         await addReadList({id:id!,})
@@ -68,7 +68,7 @@ import Reviews from './Reviews'
             </div>
             <div className="mb-4">
               <label className="text-gray-700 font-bold">Published Date:</label>
-              <p className="text-gray-900">{new Date(data!.result!.publicationDate)?.toLocaleDateString()}</p>
+              <p className="text-gray-900">{data?.result?.publicationDate? new Date(data?.result?.publicationDate)?.toLocaleDateString(): ''}</p>
             </div>
             <div className="mb-4">
               <label className="text-gray-700 font-bold">Genre:</label>

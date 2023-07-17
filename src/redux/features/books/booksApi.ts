@@ -17,13 +17,11 @@ const bookApi = api.injectEndpoints({
             queryArr.push(`${key}=${tempQuery}`)
           }
         }
-        console.log('queryfor',queryArr)
-        
+
      
         if(queryArr.length){
           url = `${url}?${queryArr.join('&')}`
         }
-        console.log('url',url)
         
         return {
           url: url
@@ -36,7 +34,7 @@ const bookApi = api.injectEndpoints({
         url: `/books/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["books"],
+      invalidatesTags: ["books","filter"],
     }),
     update: builder.mutation({
       query: ({ id, data }: { id: string, data: Partial<IBook>  }) => ({
@@ -44,6 +42,7 @@ const bookApi = api.injectEndpoints({
         method: "PATCH",
         body: data
       }),
+      invalidatesTags:["filter"]
     }),
     create: builder.mutation({
       query: ({  data }: { data: Partial<IBook>}) => ({
@@ -51,14 +50,22 @@ const bookApi = api.injectEndpoints({
         method: "POST",
         body: data
       }),
-      invalidatesTags: ["books"],
+      invalidatesTags: ["books","filter"],
     }),
     getBook: builder.query<IResponse<IBook>,string>({
       query: (id: string) => ({
         url: `/books/${id}`,
       }),
     }),
+    getBooksFilterOptions: builder.query<IResponse<{years:string[], genres:string[]}>,undefined>({
+      query: () => ({
+        url: `/books/group-by`,
+      }),
+      providesTags: ['filter']
+    }),
+    
+    
   }),
 });
 
-export const { useGetBooksQuery, useDeleteMutation, useUpdateMutation, useGetBookQuery, useCreateMutation } = bookApi;
+export const { useGetBooksQuery, useDeleteMutation, useUpdateMutation, useGetBookQuery, useCreateMutation, useGetBooksFilterOptionsQuery } = bookApi;

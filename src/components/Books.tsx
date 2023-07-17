@@ -10,8 +10,8 @@ import { useAppSelector } from '@/redux/hooks/hooks'
 
 
 const Books = () => {
-    const {search} = useAppSelector(state => state.filters)
-    const { data, error, isLoading } = useGetBooksQuery({search:search})
+    const {search,publicationYear,genre} = useAppSelector(state => state.filters)
+    const { data, error, isLoading } = useGetBooksQuery({search:search, publicationYear: publicationYear, genre})
     const navigate = useNavigate()
 
     if(isLoading)
@@ -20,7 +20,6 @@ const Books = () => {
     const details = (id: string) =>{
         navigate(`/books/${id}`)
     }
-    console.log(search)
     return (
         <div className='container mx-auto'>
             <Filters />

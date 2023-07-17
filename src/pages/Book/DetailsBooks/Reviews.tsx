@@ -19,7 +19,7 @@ const Reviews = ({id}: Props) => {
     }
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(inputValue);
+        
         const option = { 
             comment: inputValue,
             book:id,

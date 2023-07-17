@@ -11,6 +11,7 @@ import WishList from "@/pages/WishList"
 import {
     createBrowserRouter,
 } from "react-router-dom"
+import PrivateRoute from "./PrivateRoute"
   
   const router = createBrowserRouter([
     {
@@ -30,19 +31,19 @@ import {
         },
         {
           path: "/add-new-book",
-        element: <AddBook />,
+        element: <PrivateRoute><AddBook /></PrivateRoute>,
         },
         {
           path: "/update-book/:id",
-        element: <UpdateBook />,
+        element: <PrivateRoute><UpdateBook /></PrivateRoute>,
         },
       {
         path: "/wish-list",
-        element: <WishList />,
+        element: <PrivateRoute><WishList /></PrivateRoute>,
         },
         {
             path: "/read-list",
-            element: <ReadList />,
+            element: <PrivateRoute><ReadList /></PrivateRoute>,
             }]
     },
     {

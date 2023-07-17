@@ -66,6 +66,6 @@ export interface ILoginResponse {
 export interface IBookQueryType  {
   limit?: number
   search?: string
-  year?: string
+  publicationYear?: string
   genre?: string
 }
