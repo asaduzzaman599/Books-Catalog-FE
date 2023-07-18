@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useSignupMutation } from '@/redux/features/auth/authApi'
-import { ISignupInput } from '@/types/globalTypes'
+import Loading from '@/components/Loading'
+import { useGetLoggedInUserQuery, useSignupMutation } from '@/redux/features/auth/authApi'
+import { setUser } from '@/redux/features/user/userSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks'
+import { ISignupInput, IUser } from '@/types/globalTypes'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './../components/ui/button'
@@ -10,18 +13,28 @@ const Signup = () => {
     const navigate = useNavigate()
     const [signup, result] =
     useSignupMutation();
-
     
+    const {user} = useAppSelector(state=>state.user)
+    
+    const {isLoading,isSuccess, data} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '')
+    const dispatch = useAppDispatch()
+
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm<ISignupInput>();
 
-    
+      if(isSuccess){
+        dispatch(setUser({accessToken: localStorage.getItem('tokenId') as string, user: data.result as IUser }))
+       }
 
-    if(result.isLoading){
-        return <div>Loading...</div>
+    if(user){
+      navigate('/')
+    }
+
+    if(result.isLoading, isLoading){
+        return <Loading />
     }
 
     if(result.isSuccess){

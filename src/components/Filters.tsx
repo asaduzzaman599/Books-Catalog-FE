@@ -13,11 +13,10 @@ import { Input } from './ui/input'
 const Filters = () => {
     const dispatch = useAppDispatch()
     const {search} = useAppSelector(state =>state.filters)
-    const { data} = useGetBooksFilterOptionsQuery()
+    const { data} = useGetBooksFilterOptionsQuery(undefined)
 
     const filterOptionsGenres = data?.result?.genres?.length ? ['All', ...data.result.genres]: []
     const filterOptionsYears = data?.result?.years?.length ? ['All', ...data.result.years]: []
-    console.log(data?.result?.years)
     return (
         <div className='w-full p-4 flex justify-between'>
             <div className='w-2/6'>

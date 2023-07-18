@@ -5,6 +5,8 @@ import { useGetLoggedInUserQuery } from './redux/features/auth/authApi'
 import { setUser } from './redux/features/user/userSlice'
 import { useAppDispatch } from './redux/hooks/hooks'
 import { IUser } from './types/globalTypes'
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <>
+    <Tooltip id="my-tooltip" />
       <MainLayout />
     </>
   )

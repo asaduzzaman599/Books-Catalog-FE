@@ -7,16 +7,23 @@ interface Props {
 const Book = (props: Props) => {
     const { book } = props
     return (
-        <div className='p-10 rounded shadow-lg grid gap-6'>
+        <div className=' rounded shadow-lg grid gap-6'>
             <div>
-            <h3 className='text-lg font-bold'> {book.title}</h3>
-            <h3 className='text-sm font-medium'>Genre: {book.genre}</h3>
-            <h3 className='text-sm font-medium'>Author: {book.author}</h3>
-            </div>
-            <div>
-                {
-                    props.children
-                }
+                <div className='w-full text-center py-8 bg-indigo-400 p-2'>
+                    <h3 className='text-lg font-bold text-white'> {book.title}</h3>
+                    <h3 className='text-sm font-medium text-end  text-white'>- {book.author}</h3>
+                </div>
+                <div className='px-4 my-2 font-medium text-center'>
+                     <h3 className='text-sm font-bold mb-2'>GENRE</h3>
+                     <h3 className='text-sm font-bold mb-2'>{book.genre}</h3>
+                     <h3 className='text-sm font-bold'>PUBLISHED At</h3>
+                     <h3 className='text-sm font-bold'>{new Date(book.publicationDate).toLocaleDateString()}</h3>
+                    <div>
+                        {       
+                            props.children
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );

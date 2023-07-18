@@ -22,7 +22,7 @@ import Reviews from './Reviews'
     const [addReadList] = useAddReadListMutation()
     const readList = useGetReadListQuery(user.token)
     const [addWishList] = useAddWishListMutation()
-    const wishList = useGetWishListQuery(user.token)
+    const wishList = useGetWishListQuery('')
 
 
     if(isLoading || deleteResult.isLoading || wishList.isLoading || readList.isLoading )
@@ -76,11 +76,11 @@ import Reviews from './Reviews'
             </div>
             </div>
             <div>
-              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToWishList}>
-                <FaClipboardList className={`${wishListed ? 'text-blue-300':'text-gray-400'} h-4 w-4`}/> Add To Wish List
+              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToWishList}  data-tooltip-id="my-tooltip"  data-tooltip-content={wishListed?"Remove from wish list": "Add to wish list"}>
+                <FaClipboardList className={`${wishListed ? 'text-blue-300':'text-gray-400'} h-5 w-5`}/>
               </button>
-              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToReadList}>
-               <FaReadme className={`${readListed ? 'text-blue-300':'text-gray-400'} h-4 w-4`}/>  Add To Read List
+              <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToReadList} data-tooltip-id="my-tooltip" data-tooltip-content={readListed?"Remove from read list": "Add to read list"}>
+               <FaReadme className={`${readListed ? 'text-blue-300':'text-gray-400'} h-5 w-5`}/>
               </button>  
             </div>
         </div>
