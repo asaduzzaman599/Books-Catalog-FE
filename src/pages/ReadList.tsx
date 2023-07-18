@@ -28,7 +28,7 @@ const ReadList = () => {
 
     return (
         <div className='container mx-auto'>
-            <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  gap-4'>
+            <div className='mt-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-4'>
                 {
                      data?.result?.length ?
                     data?.result?.map(({book}) => <Book book={book} key={book._id}>

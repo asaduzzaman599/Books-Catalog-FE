@@ -45,7 +45,7 @@ const usersWishList = wishList?.data?.result?.map(i=>i?.book?._id) ?? []
         <Banner />
         <h3 className='text-3xl my-4 font-bold text-center'>Recently Added Books</h3>
     <div className='container mx-auto'>
-            <div className='lg:w-4/5 mx-auto mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1  gap-4'>
+            <div className='lg:w-4/5 mx-auto mt-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1  gap-4'>
                 {
                     data?.result?.map((book: IBook) => <Book book={book} key={book._id}>
                         <div>

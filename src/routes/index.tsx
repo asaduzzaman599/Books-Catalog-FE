@@ -12,6 +12,7 @@ import {
     createBrowserRouter,
 } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
+import NotFound from "@/pages/NotFound"
   
   const router = createBrowserRouter([
     {
@@ -20,7 +21,10 @@ import PrivateRoute from "./PrivateRoute"
       children: [{
       path: "/",
       element: <RecentBooks />,
-      },
+      },{
+        path: "/home",
+        element: <RecentBooks />,
+        },
       {
         path: "/books",
         element: <Books />,
@@ -53,6 +57,10 @@ import PrivateRoute from "./PrivateRoute"
     {
         path: "/signup",
         element: <Signup />
+    },
+    {
+        path: "*",
+        element: <NotFound />
     }
   ]);
 

@@ -39,10 +39,10 @@ const Books = () => {
     const usersReadList = readList?.data?.result?.map(i=>i?.book?._id) ?? []
     const usersWishList = wishList?.data?.result?.map(i=>i?.book?._id) ?? []
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto flex flex-col h-full justify-start'>
             <Filters />
             <h3 className='text-3xl my-4 font-bold'>All Books</h3>
-            <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4'>
+            <div className='mt-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 grow'>
                 {
                     data?.result?.map((book: IBook) => <Book book={book} key={book._id}>
                         <div>
