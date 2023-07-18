@@ -3,9 +3,9 @@
 
 import { Textarea } from '@/components/ui/textarea'
 import { useGetReviewsQuery, usePostCommentMutation } from '@/redux/features/reviews/reviewsApi'
+import { useAppSelector } from '@/redux/hooks/hooks'
 import { ChangeEvent, useState,FormEvent } from 'react';
 import { FaCommentDots, FaPaperPlane } from "react-icons/fa";
-
 interface Props {
     id?: string
 }
@@ -13,6 +13,7 @@ const Reviews = ({id}: Props) => {
     const [inputValue, setInputValue] = useState<string>('');
     const [postComment]=usePostCommentMutation()
     const {data}=useGetReviewsQuery(id!)
+    const user = useAppSelector(state=>state.user)
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(event.target.value);
@@ -31,8 +32,8 @@ const Reviews = ({id}: Props) => {
     return (
         <div className='w-full  p-5 '>
             <div className='p-5 shadow-lg rounded w-full bg-blue-50'>
-
-           <form onSubmit={handleSubmit} className='flex  w-full bg-white'>
+            <p className='text-sm font-medium text-center mb-2 '> Reviews </p>
+           {user.user && <form onSubmit={handleSubmit} className='flex  w-full bg-white'>
             <Textarea
             className="flex-1"
             onChange={handleChange}
@@ -43,7 +44,7 @@ const Reviews = ({id}: Props) => {
                         <FaPaperPlane className="h-6 w-6 ml-2 text-slate-700" />
                     </div>
                 </button> 
-           </form>
+           </form>}
            {
             data?.result?.map(comment=><div key={comment._id} className='w-full lg:flex gap-2 py-2 px-4  m-2 shadow rounded justify-between bg-white'>
                 <div className='flex justify-between'>
