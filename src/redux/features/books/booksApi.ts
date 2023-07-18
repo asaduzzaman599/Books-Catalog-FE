@@ -1,6 +1,5 @@
 import { api } from "@/redux/apiSlice.ts/apiSlice";
 import { IBook, IBookQueryType, IResponse } from "@/types/globalTypes";
-import { url } from "inspector"
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({

@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import {
   RouterProvider,
@@ -9,7 +8,7 @@ import router from './routes/index.tsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.ts'
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

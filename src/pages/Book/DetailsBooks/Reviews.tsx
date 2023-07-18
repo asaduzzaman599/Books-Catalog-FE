@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+
+
 import { Textarea } from '@/components/ui/textarea'
 import { useGetReviewsQuery, usePostCommentMutation } from '@/redux/features/reviews/reviewsApi'
-import React,{ ChangeEvent, useState,FormEvent } from 'react';
+import { ChangeEvent, useState,FormEvent } from 'react';
 import { FaCommentDots, FaPaperPlane } from "react-icons/fa";
 
 interface Props {

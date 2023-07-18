@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-  import Loading from '@/components/Loading'
+import Loading from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 import { useDeleteMutation, useGetBookQuery } from '@/redux/features/books/booksApi'
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { FaReadme,FaClipboardList } from "react-icons/fa";
 import { useAppSelector } from '@/redux/hooks/hooks'
 import { useAddReadListMutation, useGetReadListQuery } from '@/redux/features/readlist/readlistApi'
 import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wishlist.ts/wishlist'
-import { IBook } from '@/types/globalTypes'
 import Reviews from './Reviews'
 import {
   AlertDialog,

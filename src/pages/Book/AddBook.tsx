@@ -5,15 +5,6 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { useCreateMutation } from '@/redux/features/books/booksApi'
 import { IBook } from '@/types/globalTypes'
 import { useState } from "react"
@@ -24,12 +15,9 @@ import { Input } from './../../components/ui/input'
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { useAppSelector } from "@/redux/hooks/hooks"
 import Loading from "@/components/Loading"
 
 const AddBook = () => {
-
-    const user = useAppSelector(state => state.user)
     
     const [date, setDate] = useState<Date>()
     const navigate = useNavigate()
@@ -41,8 +29,6 @@ const AddBook = () => {
     const {
         register,
         handleSubmit,
-        setValue,
-        formState: { errors },
       } = useForm<IBook>();
 
     

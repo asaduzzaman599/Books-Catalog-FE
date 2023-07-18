@@ -24,7 +24,6 @@ const Signup = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
       } = useForm<ISignupInput>();
 
       if(isSuccess){
@@ -34,7 +33,7 @@ const Signup = () => {
     if(user){
       navigate('/')
     }
-    
+
     if(error){
       localStorage.removeItem('tokenId')
     }
@@ -54,9 +53,8 @@ const Signup = () => {
         toast.error('Something is wrong. Please check console')
     }
       
-    const onSubmit =  (data: ISignupInput) => {
-        signup({data}).catch(err => 
-          toast.error('Something went wrong'))
+    const onSubmit = async (data: ISignupInput) => {
+        await signup({data})
       };
     return (
         <div className='h-screen w-full flex items-center justify-center  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>

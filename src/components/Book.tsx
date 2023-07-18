@@ -1,5 +1,5 @@
 import { IBook } from '@/types/globalTypes'
-import React, { PropsWithChildren, ReactNode } from 'react';
+import { ReactNode } from 'react';
 interface Props {
         book: IBook
         children: ReactNode

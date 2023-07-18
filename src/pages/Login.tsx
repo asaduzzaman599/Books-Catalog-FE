@@ -19,11 +19,10 @@ const Login = () => {
     const dispatch = useAppDispatch()
     const {user} = useAppSelector(state=>state.user)
     
-    const {isLoading,isSuccess, data,  error, status} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '',{skip:!localStorage.getItem('tokenId')})
+    const {isLoading,isSuccess, data,  error} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '',{skip:!localStorage.getItem('tokenId')})
     const {
         register,
         handleSubmit,
-        formState: { errors },
       } = useForm<ILoginInput>();
 
       if(isSuccess){

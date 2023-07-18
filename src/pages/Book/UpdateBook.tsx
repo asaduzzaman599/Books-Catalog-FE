@@ -6,21 +6,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 import {  useGetBookQuery, useUpdateMutation } from '@/redux/features/books/booksApi'
 import { IBook } from '@/types/globalTypes'
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from './../../components/ui/button'
@@ -30,7 +21,7 @@ import { Input } from './../../components/ui/input'
 const UpdateBook = () => {
     const {id} = useParams()
     
-    const {data, isLoading, isSuccess} = useGetBookQuery(id as string)
+    const {data, isLoading} = useGetBookQuery(id as string)
 
     const [date, setDate] = useState<Date>()
     const navigate = useNavigate()
@@ -42,7 +33,6 @@ const UpdateBook = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
       } = useForm<IBook>({ defaultValues: {
         ...data?.result,
         publicationDate: data?.result?.publicationDate ? new Date(data?.result?.publicationDate) : new Date()

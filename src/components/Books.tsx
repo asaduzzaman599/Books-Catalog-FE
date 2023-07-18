@@ -15,7 +15,7 @@ import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wi
 
 const Books = () => {
     const {search,publicationYear,genre} = useAppSelector(state => state.filters)
-    const { data, error, isLoading } = useGetBooksQuery({search:search, publicationYear: publicationYear, genre})
+    const { data,  isLoading } = useGetBooksQuery({search:search, publicationYear: publicationYear, genre})
     const navigate = useNavigate()
     const {user} = useAppSelector(state=>state.user)
     const [addReadList] = useAddReadListMutation()

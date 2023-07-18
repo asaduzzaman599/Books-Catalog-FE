@@ -4,7 +4,7 @@ import Loading from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 import { useGetWishListQuery, useAddWishListMutation } from '@/redux/features/wishlist.ts/wishlist'
 import { useNavigate } from 'react-router-dom'
-import { FaClipboardList, FaReadme } from "react-icons/fa"
+import { FaClipboardList } from "react-icons/fa"
 
 const WishList = () => {
     const {data, isLoading} = useGetWishListQuery('')
