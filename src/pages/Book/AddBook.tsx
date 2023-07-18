@@ -72,7 +72,7 @@ const AddBook = () => {
     return (
         <div className='h-screen w-full flex items-center justify-center'>
             <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
-            <div className='p-6 rounded shadow w-96 mx-auto grid gap-4'>
+            <div className='p-6 rounded shadow-2xl w-96 mx-auto grid gap-4'>
                 <div>
                     <h3 className='text-md font-medium'>Add Book</h3>
                 </div>

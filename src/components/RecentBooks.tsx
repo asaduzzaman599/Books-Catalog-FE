@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '@/redux/hooks/hooks'
 import { useAddReadListMutation, useGetReadListQuery } from '@/redux/features/readlist/readlistApi'
 import { useAddWishListMutation, useGetWishListQuery } from '@/redux/features/wishlist.ts/wishlist'
+import Banner from './Banner'
 
 const RecentBooks = () => {
   
@@ -18,9 +19,9 @@ const RecentBooks = () => {
   const {data, isLoading}= useGetBooksQuery({limit:10})
 
   const [addReadList] = useAddReadListMutation()
-  const readList = useGetReadListQuery('')
+  const readList = useGetReadListQuery('',{skip: !user})
   const [addWishList] = useAddWishListMutation()
-  const wishList = useGetWishListQuery('')
+  const wishList = useGetWishListQuery('',{skip: !user})
 
   if(isLoading)    
   return <Loading />
@@ -39,6 +40,10 @@ const addToWishList = async (id:string) =>{
 const usersReadList = readList?.data?.result?.map(i=>i?.book?._id) ?? []
 const usersWishList = wishList?.data?.result?.map(i=>i?.book?._id) ?? []
   return (
+    <div>
+        
+        <Banner />
+        <h3 className='text-3xl my-4 font-bold text-center'>Recently Added Books</h3>
     <div className='container mx-auto'>
             <div className='lg:w-4/5 mx-auto mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1  gap-4'>
                 {
@@ -64,6 +69,7 @@ const usersWishList = wishList?.data?.result?.map(i=>i?.book?._id) ?? []
                 }
             </div>
         </div>
+    </div>
   );
 };
 

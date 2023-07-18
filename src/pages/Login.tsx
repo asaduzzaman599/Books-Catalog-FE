@@ -5,7 +5,7 @@ import { setUser } from '@/redux/features/user/userSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks'
 import { ILoginInput, IUser } from '@/types/globalTypes'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from './../components/ui/button'
 import { Input } from './../components/ui/input'
 // import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ const Login = () => {
     const dispatch = useAppDispatch()
     const {user} = useAppSelector(state=>state.user)
     
-    const {isLoading,isSuccess, data, isError, error, status} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '')
+    const {isLoading,isSuccess, data,  error, status} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '',{skip:!localStorage.getItem('tokenId')})
     const {
         register,
         handleSubmit,
@@ -36,6 +36,9 @@ const Login = () => {
       
       toast.success('User logged in!')
       navigate('/')
+    }
+    if(error){
+      localStorage.removeItem('tokenId')
     }
 
     if(result.isLoading, isLoading){
@@ -60,10 +63,10 @@ const Login = () => {
       };
 
     return (
-        <div className='h-screen w-full flex items-center justify-center'>
+        <div className='h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% '>
           
             <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
-            <div className='p-6 rounded shadow w-96 mx-auto grid gap-4'>
+            <div className='p-6 rounded shadow w-96 mx-auto grid gap-4 bg-white'>
                 <div>
                     <h3 className='text-md font-medium'>Login</h3>
                 </div>
@@ -72,6 +75,7 @@ const Login = () => {
               placeholder="your email"
               type="email"
               autoCapitalize="none"
+              required
               {...register('email', { required: 'Email is required' })}
             />
             <Input
@@ -80,10 +84,14 @@ const Login = () => {
               type="password"
               autoCapitalize="none"
               autoComplete="password"
+              required
               {...register('password', { required: 'Password is required' })}
             />
 
             <Button>Login</Button>
+            <div className='text-right'>
+              <p>Don't have account? <Link to={'/signup'} className='underline'>Sign Up</Link></p>
+            </div>
             </div>
             </form>
         </div>

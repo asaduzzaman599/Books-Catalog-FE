@@ -19,9 +19,9 @@ const Books = () => {
     const navigate = useNavigate()
     const {user} = useAppSelector(state=>state.user)
     const [addReadList] = useAddReadListMutation()
-    const readList = useGetReadListQuery('')
+    const readList = useGetReadListQuery('',{skip:!user})
     const [addWishList] = useAddWishListMutation()
-    const wishList = useGetWishListQuery('')
+    const wishList = useGetWishListQuery('',{skip:!user})
 
     if(isLoading)
     return <Loading />
@@ -41,6 +41,7 @@ const Books = () => {
     return (
         <div className='container mx-auto'>
             <Filters />
+            <h3 className='text-3xl my-4 font-bold'>All Books</h3>
             <div className='mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4'>
                 {
                     data?.result?.map((book: IBook) => <Book book={book} key={book._id}>

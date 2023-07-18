@@ -9,8 +9,8 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 
 function App() {
-
- const {isLoading,isSuccess, data} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '')
+const token = localStorage.getItem('tokenId')
+ const {isLoading,isSuccess, data, error} = useGetLoggedInUserQuery(token ?? '',{skip:!token})
  const dispatch = useAppDispatch()
 
  if(isLoading){
@@ -20,6 +20,9 @@ function App() {
  if(isSuccess){
   
   dispatch(setUser({accessToken: localStorage.getItem('tokenId') as string, user: data.result as IUser }))
+ }
+ if(error){
+  localStorage.removeItem('tokenId')
  }
 
   return (

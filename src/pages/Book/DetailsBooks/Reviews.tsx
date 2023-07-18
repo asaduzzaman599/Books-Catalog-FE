@@ -57,7 +57,7 @@ const Reviews = ({id}: Props) => {
                         <p className='text-sm text-gray-600 font-light'>{comment.comment}</p>
                     </div>
                 </div>
-                <div className='text-sm text-gray-600 font-bold text-right'>{new Date(comment.createdAt).toLocaleDateString()}</div>
+                <div className='text-xs text-gray-400 font-light text-right'>{new Date(comment.createdAt).toLocaleDateString()}</div>
             </div>)
            }
            
