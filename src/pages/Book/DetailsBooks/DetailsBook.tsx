@@ -84,7 +84,7 @@ import {
               <p className="text-gray-900">{data?.result?.genre}</p>
             </div>
             </div>
-            <div>
+            { user?.user && <div>
               <button className="p-2 flex items-center gap-4 text-gray-400 text-sm" onClick={addToWishList}  data-tooltip-id="my-tooltip"  data-tooltip-content={wishListed?"Remove from wish list": "Add to wish list"}>
                 <FaClipboardList className={`${wishListed ? 'text-blue-300':'text-gray-400'} h-5 w-5`}/>
               </button>
@@ -92,6 +92,7 @@ import {
                <FaReadme className={`${readListed ? 'text-blue-300':'text-gray-400'} h-5 w-5`}/>
               </button>  
             </div>
+            }
         </div>
         
         
