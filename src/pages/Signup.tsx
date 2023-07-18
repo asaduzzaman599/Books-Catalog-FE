@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './../components/ui/button'
 import { Input } from './../components/ui/input'
-
+import {toast} from 'react-toastify'
 const Signup = () => {
     const navigate = useNavigate()
     const [signup, result] =
@@ -44,11 +44,13 @@ const Signup = () => {
     }
 
     if(result.isError){
-        console.log(result.error)
+      console.log(result.error)
+        toast.error('Something is wrong. Please check console')
     }
       
     const onSubmit =  (data: ISignupInput) => {
-        signup({data}).catch(err => console.log(err))
+        signup({data}).catch(err => 
+          toast.error('Something went wrong'))
       };
     return (
         <div className='h-screen w-full flex items-center justify-center'>

@@ -8,6 +8,9 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './../components/ui/button'
 import { Input } from './../components/ui/input'
+// import toast from 'react-hot-toast';
+
+import {  toast  } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -16,7 +19,7 @@ const Login = () => {
     const dispatch = useAppDispatch()
     const {user} = useAppSelector(state=>state.user)
     
-    const {isLoading,isSuccess, data} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '')
+    const {isLoading,isSuccess, data, isError, error, status} = useGetLoggedInUserQuery(localStorage.getItem('tokenId') ?? '')
     const {
         register,
         handleSubmit,
@@ -24,9 +27,14 @@ const Login = () => {
       } = useForm<ILoginInput>();
 
       if(isSuccess){
+        // toast.success('User logged in successfully!')
+        
         dispatch(setUser({accessToken: localStorage.getItem('tokenId') as string, user: data.result as IUser }))
+        navigate('/')
        }
     if(user){
+      
+      toast.success('User logged in!')
       navigate('/')
     }
 
@@ -44,6 +52,7 @@ const Login = () => {
 
     if(result.isError){
         console.log(result.error)
+        toast.error('Something is wrong. Please check console')
     }
       
     const onSubmit =  async (data: ILoginInput) => {
@@ -52,6 +61,7 @@ const Login = () => {
 
     return (
         <div className='h-screen w-full flex items-center justify-center'>
+          
             <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <div className='p-6 rounded shadow w-96 mx-auto grid gap-4'>
                 <div>

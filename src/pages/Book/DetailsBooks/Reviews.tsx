@@ -45,7 +45,7 @@ const Reviews = ({id}: Props) => {
                 </button> 
            </form>
            {
-            data?.result?.map(comment=><div className='w-full lg:flex gap-2 py-2 px-4  m-2 shadow rounded justify-between bg-white'>
+            data?.result?.map(comment=><div key={comment._id} className='w-full lg:flex gap-2 py-2 px-4  m-2 shadow rounded justify-between bg-white'>
                 <div className='flex justify-between'>
                     <div>
                         <div className='flex items-center justify-center h-full mr-2'>

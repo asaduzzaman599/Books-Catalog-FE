@@ -16,8 +16,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
-import { useCreateMutation, useGetBookQuery, useUpdateMutation } from '@/redux/features/books/booksApi'
-import { useAppSelector } from "@/redux/hooks/hooks"
+import {  useGetBookQuery, useUpdateMutation } from '@/redux/features/books/booksApi'
 import { IBook } from '@/types/globalTypes'
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
@@ -29,7 +28,6 @@ import { Input } from './../../components/ui/input'
 
 
 const UpdateBook = () => {
-    const user = useAppSelector(state => state.user)
     const {id} = useParams()
     
     const {data, isLoading, isSuccess} = useGetBookQuery(id as string)
@@ -44,19 +42,12 @@ const UpdateBook = () => {
     const {
         register,
         handleSubmit,
-        setValue,
         formState: { errors },
       } = useForm<IBook>({ defaultValues: {
-        
+        ...data?.result,
+        publicationDate: data?.result?.publicationDate ? new Date(data?.result?.publicationDate) : new Date()
       }});
-
-      useEffect(()=>{
-        setValue('title', data?.result?.title ?? '')
-        setValue('author', data?.result?.author ?? '')
-        setValue('genre', data?.result?.genre ?? '')
-        data?.result?.publicationDate? setDate(new Date( data.result?.publicationDate)) : setDate(date) 
-    }, [isSuccess])
-    
+ 
 
     if(result.isLoading || isLoading){
         return <Loading />
@@ -97,22 +88,14 @@ const UpdateBook = () => {
               placeholder="Author Name"
               {...register('author', { required: 'Author Name is required' })}
             />
-            <Select onValueChange={(val:string)=>setValue('genre', val)} >
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a Genre" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                    <SelectLabel>Genre</SelectLabel>
-                    <SelectItem value="Fiction">Fiction</SelectItem>
-                    <SelectItem value="Novel">Novel</SelectItem>
-                    <SelectItem value="Narrative">Narrative</SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
+            <Input
+              id="author"
+              placeholder="Genre"
+              {...register('genre', { required: 'Genre is required' })}
+            />
             <div>
             <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild> 
         <Button
           variant={"outline"}
           className={cn(
@@ -135,7 +118,7 @@ const UpdateBook = () => {
     </Popover>
             </div>
 
-            <Button>Login</Button>
+            <Button>Update</Button>
             </div>
             </form>
         </div>

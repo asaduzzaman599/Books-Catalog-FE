@@ -42,7 +42,7 @@ const usersWishList = wishList?.data?.result?.map(i=>i?.book?._id) ?? []
     <div className='container mx-auto'>
             <div className='lg:w-4/5 mx-auto mt-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1  gap-4'>
                 {
-                    data?.result?.map((book: IBook) => <Book book={book}>
+                    data?.result?.map((book: IBook) => <Book book={book} key={book._id}>
                         <div>
                         <div className='flex justify-center mt-4'>
                             <Button onClick={()=>details(book._id)}>Details</Button>
